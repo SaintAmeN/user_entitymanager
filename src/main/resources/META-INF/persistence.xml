@@ -1,0 +1,37 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="tasks_persistence">
+        <class>com.sda.taskmanager.Task</class>
+        <!--PU skanuje wszystkie klasy i szuka entity w całym programie.
+            exclude wyłącza skan, dzięki czemu tylko ta klasa będzie zarządzać tym PU.
+        -->
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/tasks?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+        </properties>
+    </persistence-unit>
+
+    <!--Oddzielne persistence!-->
+    <persistence-unit name="users_persistence">
+        <class>com.sda.taskmanager.User</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/users?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
